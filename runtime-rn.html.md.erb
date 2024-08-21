@@ -1974,6 +1974,16 @@ During upgrade, you must check a box to verify that all AIs have been migrated. 
 
 For more information about this change, see [TAS Only Supports cflinuxfs3](https://knowledge.broadcom.com/external/article/298126/tas-cflinuxfs4-migration-proposal.html) in __TAS Application Service v2.5 Release Notes_.
 
+### <a id="routing-api-tls"></a>Routing API defaults to TLS only Endpoints
+
+When using <%= vars.segment_name_full %> v6.0 or <%= vars.windows_runtime_abbr %> v6.0 with Isolated/Windows Diego Cells that run apps using TCP routes,
+operators cannot upgrade the platform from <%= vars.app_runtime_abbr %> v6.0 or later to <%= vars.app_runtime_abbr %> v7.0 until one of the following occurs:
+
+1. All Isolated and Windows Diego Cells are upgraded to version 6.0.7 or later
+2. When deploying <%= vars.app_runtime_abbr %> v7.0, the "Routing API Endpoint Protocol" is set to "HTTPS and plain HTTP" until all Isolated + Windows Diego Cells are upgraded to v7.0. After this, <%= vars.app_runtime_abbr %> can be re-deployed to switch Routing API back to "HTTPS only."
+
+<strong>Failure to do at least one of the above steps will result in downtime for Isolated + Windows apps using TCP routes.</strong>
+
 ## <a id='known-issues'></a> Known issues
 
 Here are the known issues for <%= vars.app_runtime_full %> <%= vars.v_major_version %>.
